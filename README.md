@@ -1,4 +1,4 @@
-**NOTE: this is a preview.**
+**NOTE: this is a preview, things will change without warning.**
 
 `warc2corpus` extracts text corpora from WARCs, according to a user-defined specification. The specification consists of CSS paths and (optional) transformations on the text extracted.
 
