@@ -10,6 +10,8 @@ Install AUT as described at their website and start a PySpark console.
 
 See also `bin/pyspark`, your installation paths may vary.
 
+Install dependencies with `pip install -r requirements.txt`.
+
 # Example
 
 First, an extractor must be defined. The extractor defined in `lib/warc2corpus/extractors/test.py` extracts the fields `title`, `body` and `released_at` from matching HTML pages found inside a WARC. HTML pages are matched by `netloc_regex` and `path_regex`.
