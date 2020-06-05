@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+export PYTHONPATH="${PYTHONPATH:-}:$(dirname $0)/../lib/"
+/opt/spark/bin/pyspark --py-files /opt/aut/target/aut.zip --jars /opt/aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar
