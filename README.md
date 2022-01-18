@@ -57,6 +57,8 @@ extractors = [
 Now, the extractor can be applied to a WARC.
 
 ```python
+spark.sparkContext.addPyFile('/w2c/warc2corpus.zip')
+
 from aut import *
 from pyspark.sql.functions import col, udf
 from warc2corpus.text import extract
