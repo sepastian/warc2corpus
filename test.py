@@ -11,3 +11,6 @@ df2 = df.select(extractor_udf('content').alias('extract'))
 df2.limit(1).collect()[0]['extract']
 
 #df.select(extract('content',zeit_de))
+
+# UDF closure:
+# https://stackoverflow.com/a/37428126/92049

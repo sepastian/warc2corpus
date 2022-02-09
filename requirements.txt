@@ -1,1 +1,3 @@
 dateparser
+beautifulsoup4
+jsonschema
