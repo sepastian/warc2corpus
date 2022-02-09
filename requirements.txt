@@ -1,3 +1,4 @@
 dateparser
 beautifulsoup4
 jsonschema
+lxml
