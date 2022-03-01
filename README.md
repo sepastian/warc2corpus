@@ -1,9 +1,13 @@
+# warc2corpus
+
 `warc2corpus` extracts text corpora from WARCs, according to a user-defined specification. The specification consists of CSS paths and (optional) transformations on the text extracted.
 
 `warc2corpus` is best used with [Archives Unleashed Toolkit (AUT)](https://archivesunleashed.org/).
 
 
-# Installation with Docker
+## Installation
+
+### Docker
 
 AUT's `docker-aut` images serves as the base image for `warc2corpus`.
 
