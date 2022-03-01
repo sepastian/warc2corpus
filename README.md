@@ -28,7 +28,9 @@ cd warc2corpus
 make build
 ```
 
-Run the sample after building the image.
+## Usage
+
+After building a Docker images as describe above, run the sample to extract information from the sample WARC archives found in `data/`.
 
 ```shell
 cd warc2corpus
