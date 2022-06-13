@@ -14,7 +14,7 @@ sample-spark: build
 	  --entrypoint=/spark/bin/spark-submit \
 	  warc2corpus \
 	  --py-files /aut/target/aut.zip \
-	  --jars=/aut/target/aut-0.91.1-SNAPSHOT-fatjar.jar \
+	  --jars=/aut/target/aut-1.0.1-SNAPSHOT-fatjar.jar \
 	  sample/up_pressemeldungen.py
 
 .PHONY: sample
