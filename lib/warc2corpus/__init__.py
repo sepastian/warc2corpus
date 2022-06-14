@@ -1,7 +1,35 @@
 import bs4
 from datetime import datetime as dt
+from aut import *
+from pyspark.sql.functions import col, udf, from_json, explode, concat
+from pyspark.sql.types import * #MapType, StringType, ArrayType, StructType, from_json
+from pyspark import SparkContext
+from pyspark.sql import SQLContext
+from json import dumps
 
-def apply(content,extractors):
+def run(warc_file, config, url_regex='.*'):
+    """
+    Main entry point for warc2corpus.
+    """
+    sc = SparkContext.getOrCreate()
+    sqlContext = SQLContext(sc)
+    df1 = WebArchive(sc, sqlContext, str(warc_file))
+    df2 = df1.all().filter(col("url").rlike(url_regex))
+    df3 = df2.withColumn("extract", extract(config)(remove_http_header(col("raw_content"))))
+    df4 = df3.select(df3.url, from_json('extract','ARRAY<MAP<STRING,STRING>>').alias('extract'))
+    return df4
+
+# https://stackoverflow.com/a/37428126/92049
+def extract(config):
+    """
+    Generate a Spark UDF.
+
+    This encloses warc2corpus' apply function to make
+    the configuration available to Spark during processing.
+    """
+    return udf(lambda html: dumps(apply(html,config)))
+
+def apply(content, extractors):
     """
     Apply extractors to content.
     """
