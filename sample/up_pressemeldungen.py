@@ -1,4 +1,11 @@
-# docker run --rm -it --name aut -v $(pwd):/w2c --workdir=/w2c -e "PYTHONPATH=/w2c/lib" sepastian/aut:latest /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar
+# docker run --rm -it --name aut \
+#   -v $(pwd):/w2c \
+#   --workdir=/w2c \
+#   -e "PYTHONPATH=/w2c/lib" \
+#   sepastian/aut:latest \
+#     /spark/bin/pyspark \
+#       --py-files /aut/target/aut.zip \
+#       --jars /aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar
 
 import json
 import dateparser as dp
