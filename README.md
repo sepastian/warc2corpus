@@ -181,6 +181,8 @@ spec= {
 
  When running warc2corpus, each extractor will be applied on the HTML page processed. The `css_path` is used to select one or several elements from the HTML page. The information extracted will be stored under the key `released_at`, as defined by `name`. Instead of storing the date of release as-is, the lamba `f` is applied first, to transform the string `"14. Februar 1992"` into a datetime object.
 
+### Results of Extraction
+
 The result of applying the extractor above is the following JSON object. The `css_path` and the `name` have been copied into the result. The information extracted is stored under `value`, after applying the lambda `f` on it.
 
 ```json
