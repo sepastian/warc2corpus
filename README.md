@@ -183,7 +183,7 @@ spec= {
 
 ### Results of Extraction
 
-The result of applying the extractor above is the following JSON object. The `css_path` and the `name` have been copied into the result. The information extracted is stored under `value`, after applying the lambda `f` on it.
+The result of applying the extractor above is the following JSON object. The `css_path` and the `name` have been copied into the result. The date of release extracted from the HTML has been passed through the lambda defined in `f`, the result is stored under `value`.
 
 ```json
 [
