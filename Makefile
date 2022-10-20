@@ -8,22 +8,22 @@ pyspark: build
 console: build
 	docker run --rm -it -v $(CURDIR)/data:/w2c/data --entrypoint=/bin/bash warc2corpus
 
-.PHONY: sample-spark
+.PHONY: sample-aut
 sample-spark: build
 	docker run --rm -it -v $(CURDIR)/data:/w2c/data \
 	  --entrypoint=/spark/bin/spark-submit \
 	  warc2corpus \
-	  --py-files /aut/target/aut.zip \
-	  --jars=/aut/target/aut-1.0.1-SNAPSHOT-fatjar.jar \
-	  sample/up_pressemeldungen.py
+	  --py-files /aut/aut-1.1.0.zip \
+	  --jars=/aut/aut-1.1.0-fatjar.jar \
+	  sample/w2c_aut.py
 
-.PHONY: sample
+.PHONY: sample-standalone
 sample: build
 	docker run --rm -it -v $(CURDIR)/data:/w2c/data \
+	  -e PYTHONPATH=/aut/aut-1.1.0.zip:/w2c/lib \
 	  --entrypoint=/usr/bin/python3 \
 	  warc2corpus \
-	  sample/sample.py
-
+	  sample/w2c_standalone.py
 
 .PHONY: build
 build:

@@ -11,6 +11,7 @@ import json
 import dateparser as dp
 from datetime import datetime as dt
 from pathlib import Path
+from pprint import pprint
 from warc2corpus import run
 
 # Find the WARC archive file to process.
@@ -41,8 +42,7 @@ url_regex = ".+/pressemeldungen/meldung/detail/[a-z]+"
 #   * the 'name' under wich to store the information extracted;
 #   * the 'css_path' at which to find the information within the web page;
 #   * an optional function 'f' to transform the data extracted
-config= [
-    {
+spec= {
         'meta': {
             'name': 'Uni Passau press releases',
             'location': 'WARCnet London 2022',
@@ -72,11 +72,14 @@ config= [
             }
         ]
     }
-]
 
-# Run warc2corpus, supplying the URL pattern and configuration defined above.
+
+# Run warc2corpus, supplying the URL pattern and spec defined above.
 # This will return a (Py)Spark data frame.
-df = run(warc_file, config, url_regex=url_regex)
+df = run(warc_file, spec, url_regex=url_regex)
+
+# Write results to console, in JSON format.
+pprint(df.toJSON().collect())
 
 # Write the results to a file in JSON format.
 out_dir = data_dir.joinpath('sample_run_{}'.format(dt.now().strftime('%Y%m%dT%H%M%S')))

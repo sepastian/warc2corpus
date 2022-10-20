@@ -1,5 +1,8 @@
 # make console
-# /spark/bin/spark-submit --py-files /aut/target/aut.zip --jars=/aut/target/aut-0.91.1-SNAPSHOT-fatjar.jar sample/sample.py
+# /spark/bin/spark-submit \
+#   --py-files /aut/target/aut.zip \
+#   --jars=/aut/target/aut-0.91.1-SNAPSHOT-fatjar.jar \
+# sample/sample.py
 
 from pathlib import Path
 import re
@@ -12,7 +15,7 @@ datadir= base.joinpath('data')
 samplefile= datadir.joinpath('sueddeutsche_artikel_20220208.html')
 html= open(samplefile,'r',encoding='utf-8').read()
 
-extractor= {
+spec= {
     'meta': {
         'name': 'Sueddeutsche Artikel',
         'issuer': 'media_site',
@@ -20,8 +23,6 @@ extractor= {
         'type': 'article',
         'layout': 'a'
     },
-    'netloc_regex': re.compile('www\.zeit\.de'),
-    'path_regex': re.compile('^/news/.+$'),
     'extracts': [
         {
             'name': 'title',
@@ -45,6 +46,6 @@ extractor= {
     ]
 }
 
-result= w2c.apply(html, extractor)
+result= w2c.apply(html, spec)
 
 print(json.dumps(result,indent=4,sort_keys=True))
